@@ -164,7 +164,7 @@ TurnResult CHumanPlayer::GetAction(CShotgun* pShotgun, IPlayer* pOtherPlayer)
                 bool bCuffedOpponent = false;
                 for (auto& eItem : stlItems)
                 {
-                    if (eItem == EPlayerItem::HANDSAW)
+                    if (eItem == EPlayerItem::HANDCUFFS)
                     {
                         eItem = EPlayerItem::NONE;
                         std::cout << "Used handcuffs. Next turn will be yours no matter the output." << std::endl;
