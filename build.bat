@@ -7,7 +7,7 @@
 
 where cl
 if %ERRORLEVEL% neq 0 (
-    vcvarsall x64
+    call vcvarsall x64
 )
 
 if not exist run_tree (

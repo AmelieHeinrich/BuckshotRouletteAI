@@ -11,13 +11,14 @@
 CGame::CGame()
 {
     pShotgun = new CShotgun();
-    pShotgun->Generate(5);
 
     pPlayerOne = new CHumanPlayer;
     pPlayerOne->SetName("Player One");
+    pPlayerOne->Initialize();
 
     pPlayerTwo = new CHumanPlayer;
     pPlayerTwo->SetName("Player Two");
+    pPlayerTwo->Initialize();
 }
 
 CGame::~CGame()
@@ -55,17 +56,21 @@ void CGame::DoTurn()
     if (pShotgun->GetBulletCount() == 0) {
         std::cout << std::endl;
         pShotgun->Generate(5);
+
+        std::cout << "Giving items..." << std::endl;
+        pPlayerOne->FillItems();
+        pPlayerTwo->FillItems();
     }
 
     bool bTurnResult = false;
 
     if (bTurn == PLAYER_TURN)
     {
-        pPlayerOne->DoAction(pShotgun, pPlayerTwo);
+        bTurnResult = pPlayerOne->DoAction(pShotgun, pPlayerTwo);
     }
     else if (bTurn == DEALER_TURN)
     {
-        pPlayerTwo->DoAction(pShotgun, pPlayerOne);
+        bTurnResult = pPlayerTwo->DoAction(pShotgun, pPlayerOne);
     }
     std::cout << std::endl;
 

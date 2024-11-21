@@ -11,5 +11,5 @@
 class CHumanPlayer : public IPlayer
 {
 public:
-    EPlayerAction GetAction(CShotgun* pShotgun, IPlayer* pOtherPlayer) override;
+    TurnResult GetAction(CShotgun* pShotgun, IPlayer* pOtherPlayer) override;
 };
