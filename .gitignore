@@ -1,0 +1,6 @@
+# Binaries
+run_tree
+
+# Other, IDE stuff
+.vscode
+notes.txt
