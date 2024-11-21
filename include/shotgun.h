@@ -24,10 +24,14 @@ public:
     void Generate(int nBulletCount);
 
     int GetBulletCount() { return stlChamber.size(); }
+    int GetLiveCount() { return nLiveCount; }
+    int GetBlankCount() { return nBlankCount; }
 
     /// NOTE(ame): Used to implement the magnifying glass item
     EBulletType ShowNextBullet();
     EBulletType PopBullet();
 private:
+    int nLiveCount = 0;
+    int nBlankCount = 0;
     std::stack<EBulletType> stlChamber;
 };

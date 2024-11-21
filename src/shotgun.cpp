@@ -23,9 +23,6 @@ CShotgun::~CShotgun()
 
 void CShotgun::Generate(int nBulletCount)
 {
-    int nBlankCount = 0;
-    int nLiveCount = 0;
-
     while ((nBlankCount + nLiveCount) != nBulletCount)
     {
         nBlankCount = util::RandomInt(1, nBulletCount - 1);
@@ -60,6 +57,14 @@ EBulletType CShotgun::ShowNextBullet()
 EBulletType CShotgun::PopBullet()
 {
     EBulletType top = ShowNextBullet();
+    if (top == EBulletType::LIVE)
+    {
+        nLiveCount--;
+    }
+    if (top == EBulletType::BLANK)
+    {
+        nBlankCount--;
+    }
     stlChamber.pop();
     return top;
 }

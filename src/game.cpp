@@ -16,8 +16,8 @@ CGame::CGame()
     pPlayerOne->SetName("Player One");
     pPlayerOne->Initialize();
 
-    pPlayerTwo = new CHumanPlayer;
-    pPlayerTwo->SetName("Player Two");
+    pPlayerTwo = new CAIPlayer;
+    pPlayerTwo->SetName("AI Player");
     pPlayerTwo->Initialize();
 }
 
@@ -60,22 +60,21 @@ void CGame::DoTurn()
         std::cout << "Giving items..." << std::endl;
         pPlayerOne->FillItems();
         pPlayerTwo->FillItems();
+        std::cout << std::endl;
     }
+    std::cout << "TURN " << nTurnCount << std::endl;
 
     bool bTurnResult = false;
+    IPlayer* pNextPlayer = bTurn == PLAYER_TURN ? pPlayerOne : pPlayerTwo;
+    IPlayer* pOtherPlayer = pNextPlayer == pPlayerOne ? pPlayerTwo : pPlayerOne;
 
-    if (bTurn == PLAYER_TURN)
-    {
-        bTurnResult = pPlayerOne->DoAction(pShotgun, pPlayerTwo);
-    }
-    else if (bTurn == DEALER_TURN)
-    {
-        bTurnResult = pPlayerTwo->DoAction(pShotgun, pPlayerOne);
-    }
-    std::cout << std::endl;
+    std::cout << "NEXT UP: " << pNextPlayer->GetName() << std::endl;
+    bTurnResult = pNextPlayer->DoAction(pShotgun, pOtherPlayer);
 
     if (!bTurnResult)
     {
         bTurn = !bTurn;
     }
+    nTurnCount++;
+    std::cout << std::endl;
 }

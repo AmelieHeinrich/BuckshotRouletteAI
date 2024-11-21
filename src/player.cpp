@@ -43,7 +43,7 @@ bool IPlayer::DoAction(CShotgun* pShotgun, IPlayer* pOtherPlayer)
         EBulletType eBullet = pShotgun->PopBullet();
         if (eBullet == EBulletType::BLANK)
         {
-            std::cout << "Shot opponent with blank." << std::endl;
+            std::cout << "Shot " << GetName() << " with blank." << std::endl;
             return false || Result.bHandcuffedOpponent;
         }
         if (eBullet == EBulletType::LIVE)
@@ -57,7 +57,7 @@ bool IPlayer::DoAction(CShotgun* pShotgun, IPlayer* pOtherPlayer)
             {
                 pOtherPlayer->RemoveLife();
             }
-            std::cout << "Shot opponent with live. Opponent now has " << pOtherPlayer->GetLives() << " lives left." << std::endl;
+            std::cout << "Shot " << pOtherPlayer->GetName() << " with live. He now has " << pOtherPlayer->GetLives() << " lives left." << std::endl;
             return false || Result.bHandcuffedOpponent;
         }
     }
@@ -66,7 +66,7 @@ bool IPlayer::DoAction(CShotgun* pShotgun, IPlayer* pOtherPlayer)
         EBulletType eBullet = pShotgun->PopBullet();
         if (eBullet == EBulletType::BLANK)
         {
-            std::cout << "Shot yourself with blank. You get another turn." << std::endl;
+            std::cout << "Shot himself with blank. " << GetName() << " gets another turn." << std::endl;
             return true || Result.bHandcuffedOpponent;
         }
         if (eBullet == EBulletType::LIVE)
@@ -80,7 +80,7 @@ bool IPlayer::DoAction(CShotgun* pShotgun, IPlayer* pOtherPlayer)
             {
                 this->RemoveLife();
             }
-            std::cout << "Shot yourself with live. You now have " << this->GetLives() << " lives left." << std::endl;
+            std::cout << "Shot himself with live. " << GetName() << " now has " << this->GetLives() << " lives left." << std::endl;
             return false || Result.bHandcuffedOpponent;
         }
     }

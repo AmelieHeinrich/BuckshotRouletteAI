@@ -9,6 +9,7 @@
 #include "shotgun.h"
 #include "player.h"
 #include "human_player.h"
+#include "ai_player.h"
 
 static constexpr bool PLAYER_TURN = false;
 static constexpr bool DEALER_TURN = true;
@@ -30,5 +31,6 @@ private:
     IPlayer* pPlayerTwo;
 
     /// NOTE(ame): false is player's turn, true is dealer's turn
-    bool bTurn;
+    bool bTurn = PLAYER_TURN;
+    int nTurnCount = 0;
 };
